@@ -22,6 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Assurez-vous d'avoir un contrôleur pour gérer ces actions
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
-Route::post('/token/create', [AuthController::class, 'createToken'])->middleware('auth:sanctum');
 // Route d'inscription
 Route::post('/register', [AuthController::class, 'register']);
+
+// Route pour créer un jeton
+Route::post('/token/create', [AuthController::class, 'createToken'])->middleware('auth:sanctum');
+Route::middleware('auth:sanctum')->post('/verify-token', [AuthController::class, 'verifyToken']);

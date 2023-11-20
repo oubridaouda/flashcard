@@ -85,4 +85,13 @@ class AuthController extends Controller
 
         return response()->json(['token' => $token->plainTextToken]);
     }
+
+    //Check token validity
+    public function verifyToken(Request $request)
+    {
+        return response()->json([
+            'message' => 'Token is valid',
+            'user' => $request->user(),
+        ]);
+    }
 }
