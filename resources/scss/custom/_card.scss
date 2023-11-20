@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+
+:root {
+    --color-text: #616161;
+    --color-text-btn: #ffffff;
+    --card1-gradient-color1: #f12711;
+    --card1-gradient-color2: #f5af19;
+    --card2-gradient-color1: #7F00FF;
+    --card2-gradient-color2: #E100FF;
+    --card3-gradient-color1: #3f2b96;
+    --card3-gradient-color2: #a8c0ff;
+    --card4-gradient-color1: #11998e;
+    --card4-gradient-color2: #38ef7d;
+}
+
+
+.card-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 20px;
+    border: 5px solid #fff;
+    overflow: hidden;
+    color: var(--color-text);
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    cursor: pointer;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+
+
+    .card-header {
+        height: 200px;
+        width: 100%;
+        background: red;
+        border-radius: 100% 0% 100% 0% / 0% 50% 50% 100%;
+        display: grid;
+        place-items: center;
+
+    }
+
+    .card-header i {
+        color: #fff;
+        font-size: 72px;
+    }
+
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .card-title {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 16px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+    }
+
+    .card-text {
+        text-align: center;
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+
+    .card-btn {
+        border: none;
+        border-radius: 100px;
+        padding: 5px 30px;
+        color: #fff;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+
+    .one {
+        background: linear-gradient(to bottom left, var(--card1-gradient-color1), var(--card1-gradient-color2));
+    }
+
+    .two {
+        background: linear-gradient(to bottom left, var(--card2-gradient-color1), var(--card2-gradient-color2));
+    }
+
+    .three {
+        background: linear-gradient(to bottom left, var(--card3-gradient-color1), var(--card3-gradient-color2));
+    }
+
+    .four {
+        background: linear-gradient(to bottom left, var(--card4-gradient-color1), var(--card4-gradient-color2));
+    }
+
+    .card-btn.one {
+        background: linear-gradient(to left, var(--card1-gradient-color1), var(--card1-gradient-color2));
+    }
+
+    .card-btn.two {
+        background: linear-gradient(to left, var(--card2-gradient-color1), var(--card2-gradient-color2));
+    }
+
+    .card-btn.three {
+        background: linear-gradient(to left, var(--card3-gradient-color1), var(--card3-gradient-color2));
+    }
+
+    .card-btn.four {
+        background: linear-gradient(to left, var(--card4-gradient-color1), var(--card4-gradient-color2));
+    }
+}
+
+
+.flip-card {
+    background-color: transparent;
+    width: 300px;
+    height: 400px;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+
+    margin: 5px;
+
+    /* This container is needed to position the front and back side */
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+
+
+    /* Position the front and back side */
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px ;
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+    }
+
+    /* Style the front side (fallback if image is missing) */
+    .flip-card-front {
+        background-color: #bbb;
+        color: black;
+    }
+
+    /* Style the back side */
+    .flip-card-back {
+        background: linear-gradient(to bottom left, var(--card4-gradient-color1), var(--card4-gradient-color2));
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform: rotateY(180deg);
+    }
+
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
