@@ -1,12 +1,15 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+
 class AuthController extends Controller
 {
     public function login(Request $request)
@@ -81,17 +84,26 @@ class AuthController extends Controller
 
     public function createToken(Request $request)
     {
-        $token = $request->user()->createToken('api-token');
+        try {
+            $token = $request->user()->createToken('api-token');
 
-        return response()->json(['token' => $token->plainTextToken]);
+            return response()->json(['token' => $token->plainTextToken]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => "You can t create Token"], 401);
+        }
     }
 
     //Check token validity
     public function verifyToken(Request $request)
     {
-        return response()->json([
-            'message' => 'Token is valid',
-            'user' => $request->user(),
-        ]);
+        try {
+
+            return response()->json([
+                'message' => 'Token is valid',
+                'user' => $request->user(),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Token is not valid'], 401);
+        }
     }
 }

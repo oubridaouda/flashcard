@@ -1,9 +1,13 @@
 import './bootstrap';
 import { createApp } from 'vue';
-import flashcard from './components/flashcard.vue';
+import router from './router'; // Assurez-vous que le chemin est correct
+import App from './App.vue';
 
-const app = createApp({});
+// Créer l'application Vue
+const app = createApp(App);
 
-app.component('flashcard', flashcard);
+// Utiliser Vue Router
+app.use(router);
 
+// Monter l'application
 app.mount('#app');
